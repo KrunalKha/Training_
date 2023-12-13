@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        class Person{
+            personName;
+            constructor(pname){
+                this.personName = pname;
+            }
+            displayPersonDetails(){
+                console.log(this.personName);
+            }
+
+        }
+        class employee extends Person{ /// Inheriting person classto employee class
+            lname;
+            constructor(fname,lname){
+                super(fname);
+                this.lname = lname;
+
+            }
+        }
+
+        function Fun(){
+            const pObject = new employee(document.getElementById("txtname").value, document.getElementById("lastname").value);
+            pObject.displayPersonDetails();
+        }
+
+        // this is another program
+        class employee2 { 
+            empname;
+            empage;
+            set setname(name){
+                this.empname = name;
+            }
+            
+            set setempage(age){
+                this.empage = age;
+            }
+
+            get getempname(){
+                return this.empname;
+            }
+
+            get getempage(){
+                return this.empage;
+            }
+
+            
+            showEmployeeDetails(){
+                return this.empname;
+            }
+        }
+            employee2.prototype.empdesignation="PROGRAMMER";
+        class company{
+            companyname;
+            empObject;
+            constructor(empElement, companyName){
+                this.empObject = empElement;
+                this.companyname = companyName;
+            }
+            printCompanyDetails(){
+                var msg = this.empObject.showEmployeeDetails() + " works for "+ this.companyname;
+                return msg;
+            }
+        }
+
+        const Fun2 = function(){
+            const empItem = new employee2();
+           // let compItem = new company(empItem, "GokulDamSociety");
+            empItem.setempage = 40;
+            empItem.setname = "popta lal";
+
+            let msg = empItem.getempname + " is  "+ empItem.getempage +" years old and works as "+ empItem.empdesignation;
+            console.log(msg);
+        }
+
+        
+
+        class employeeData{
+            name;
+            age;
+            city;
+
+            set setname(name){
+                this.name = name;
+            }
+            
+            set setage(age){
+                this.age = age;
+            }
+
+            set setcity(city){
+                this.city = city;
+            }
+
+            get getname(){
+                return this.name;
+            }
+
+            get getage(){
+                return this.age;
+            }
+            get getcity(){
+                return this.city;
+            }
+
+            
+        }
+
+        var dict = {};
+
+        function pushObject(){
+            let empItem = new employeeData();
+            empItem.setage = document.getElementById('age').value;
+            empItem.setname = document.getElementById('name').value;
+            empItem.setcity = document.getElementById('city').value;
+
+            dict['Name'] = empItem.getname;
+            dict['Age'] = empItem.getage;
+            dict['City'] = empItem.getcity;
+          
+
+            //print dict
+            const div = document.getElementById('showData');
+            
+            len = Object.keys(dict).length/3;
+            for (let i = 0; i <len; i++) {
+                let html = `<p>Name: ${dict['Name']}, Age: ${dict['Age']}, City: ${dict['City']}</p>`;
+                div.insertAdjacentHTML('beforeend', html);
+                }
+            
+        }
+        
+
+
+        function colormode(){
+            var spanObject = document.getElementById("span1");
+            spanObject.className = "blue";
+            timer1 = setTimeout(colormode2,5000);
+        }
+        function colormode2(){
+            var spanObject = document.getElementById("span1");
+            spanObject.className = "green";
+            timer2 = setTimeout(colormode3,5000);
+        }
+        function colormode3(){
+            var spanObject = document.getElementById("span1");
+            spanObject.className = "red";
+            timer3 = setTimeout(colormode,5000);
+        }
+        function stopFunction(){
+           
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            clearTimeout(timer3);
+
+        }
+
+        
+    </script>
+</head>
+<body>
+    <span>Enter Name</span>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <input type="text" id ="txtname">
+    <br>
+    <span>Enter last Name</span>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+    <input type="text" id ="lastname">
+    <br>
+    <input type="button" value ="Display Content" onclick="Fun();">
+    <hr>
+    <input type="button" value="Display Content" onclick = "Fun2();">
+    <hr>
+    <div>
+        <h2>Show Employee Data</h2>
+        <input type="text" id ="name" placeholder="Name">
+        <input type="text" id ="age"  placeholder="Age">
+        <input type="text" id ="city"  placeholder="City">
+        <input type ="button" value="add" onclick="pushObject();">
+    </div>
+    <div id="showData">
+
+    </div>
+    <hr>
+    <div>
+        <span id="span1">We are learning Js</span>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <input type="button" value="Change color" onclick="colormode();">
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <input type ="button" value ="stop" onclick="stopFunction();" >;
+    </div>
+
+    
+</body>
+</html>
